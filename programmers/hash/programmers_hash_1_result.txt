@@ -1,0 +1,43 @@
+ver 1 - only vector
+correctness test
+테스트 1 〉	통과 (0.01ms, 3.81MB)
+테스트 2 〉	통과 (0.01ms, 3.77MB)
+테스트 3 〉	통과 (0.58ms, 3.95MB)
+테스트 4 〉	통과 (1.89ms, 4.1MB)
+테스트 5 〉	통과 (1.85ms, 4.1MB)
+
+efficiency test
+Fail
+Fail
+Fail
+Fail
+
+ver 2 - map
+correctness test
+테스트 1 〉	통과 (0.01ms, 3.87MB)
+테스트 2 〉	통과 (0.01ms, 3.79MB)
+테스트 3 〉	통과 (0.32ms, 4.04MB)
+테스트 4 〉	통과 (0.68ms, 3.99MB)
+테스트 5 〉	통과 (0.65ms, 4MB)
+
+efficiency test
+테스트 1 〉	통과 (55.30ms, 16.1MB)
+테스트 2 〉	통과 (85.34ms, 22.4MB)
+테스트 3 〉	통과 (121.94ms, 26.5MB)
+테스트 4 〉	통과 (116.46ms, 28.9MB)
+테스트 5 〉	통과 (139.97ms, 28.9MB)
+
+ver 3 - Sorting (Not my code)
+correctness test
+테스트 1 〉	통과 (0.01ms, 3.79MB)
+테스트 2 〉	통과 (0.01ms, 3.76MB)
+테스트 3 〉	통과 (0.29ms, 4MB)
+테스트 4 〉	통과 (0.59ms, 3.95MB)
+테스트 5 〉	통과 (0.63ms, 4.09MB)
+
+efficiency test
+테스트 1 〉	통과 (39.28ms, 12.3MB)
+테스트 2 〉	통과 (62.55ms, 16.7MB)
+테스트 3 〉	통과 (75.63ms, 19.5MB)
+테스트 4 〉	통과 (83.34ms, 21.3MB)
+테스트 5 〉	통과 (80.95ms, 21.4MB)
