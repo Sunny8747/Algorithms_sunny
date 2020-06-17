@@ -11,30 +11,16 @@
 
 using namespace std;
 
-template <class T1, class T2>
-bool programmers_io(T1 input1, T1 input2, T2 expected_result);
-
-vector<string> solution(vector<string> participant, vector<string> completion)
+string solution(vector<string> participant, vector<string> completion)
 {
-    vector<string> ans;
+    string ans;
     return ans;
 }
 
-int main(int argc, char** argv)
-{
-    // making test set
-    string input1 = "";
-    string input2 = "";
-    string expected_result = "";
-    bool result = programmers_io(input1, input2, expected_result);
-}
-
-template <class T1, class T2>
-bool programmers_io(T1 input1, T1 input2, T2 expected_result)
+bool programmers_io(string input1, string input2, string expected_result)
 {
     vector<string> vec_input1;
     vector<string> vec_input2;
-
     stringstream ss;
     string tempStr;
     ss.str(input1);
@@ -59,4 +45,13 @@ bool programmers_io(T1 input1, T1 input2, T2 expected_result)
         cout << "false result : " << result << endl;
         return false;
     }
+}
+
+int main()
+{
+    // making test set
+    string input1 = "";
+    string input2 = "";
+    string expected_result = "";
+    bool result = programmers_io(input1, input2, expected_result);
 }
