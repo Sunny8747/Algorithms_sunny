@@ -32,22 +32,25 @@ int main(int argc, char** argv)
 template <class T1, class T2>
 bool programmers_io(T1 input1, T1 input2, T2 expected_result)
 {
+    vector<string> vec_input1;
+    vector<string> vec_input2;
+
     stringstream ss;
     string tempStr;
     ss.str(input1);
     while (ss >> tempStr) {
-        participant.push_back(tempStr);
+        vec_input1.push_back(tempStr);
     }
     ss.str(input2);
     ss.seekg(0);
     while (ss >> tempStr) {
-        completion.push_back(tempStr);
+        vec_input2.push_back(tempStr);
     }
-    cout << "parti size : " << participant.size() << endl;
-    cout << "comple size : " << completion.size() << endl;
+    cout << "parti size : " << vec_input1.size() << endl;
+    cout << "comple size : " << vec_input2.size() << endl;
 
     //result
-    string result = solution(participant, completion);
+    string result = solution(vec_input1, vec_input2);
     if (result == expected_result) {
         cout << "Pass : " << result << endl;
         return true;
