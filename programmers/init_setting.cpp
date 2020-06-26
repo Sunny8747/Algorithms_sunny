@@ -24,13 +24,8 @@ bool programmers_io(string input1, int expected_result)
     stringstream ss;
     string tempStr;
     ss.str(input1);
-    int count = 0;
     while (ss >> tempStr) {
         vec_input1.push_back(tempStr);
-        if (count % 2 == 1) {
-            clothes.push_back(vec_input1);
-        }
-        count++;
     }
 
     cout << "vec_input1 size : " << vec_input1.size() << endl;
