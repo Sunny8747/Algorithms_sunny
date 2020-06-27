@@ -19,10 +19,35 @@ int solution(int bridge_length, int weight, vector<int> truck_weights)
     // truck x, x+1 > length. then only x passed and answer += length
     // <truck_weights, pos>
     // pos-> 0(waiting) -> 1 ~ bridge_length(on bridge) -> dequeue
-    queue<int, int> q;
-    int lim = 1000;
-    while (lim > 0) {
-        lim--;
+    // caution!!!
+    // vector for loop!!
+    // if erase iterater pulled one position!!!
+    // iter++; have to seperated with erase!!!
+    vector<pair<int, int>> q;
+    int bridge_weight = 0;
+    int count = 0;
+    //cout << truck_weights.size();
+    while (true) {
+        for (vector<pair<int, int>>::iterator iter = q.begin(); iter != q.end();) {
+            (*iter).second += 1;
+            if ((*iter).second == bridge_length + 1) {
+                bridge_weight -= (*iter).first;
+                q.erase(q.begin());
+            }
+            else {
+                iter++;
+            }
+        }
+        if (count == truck_weights.size() && q.size() == 0) {
+            answer++;
+            break;
+        }
+        if (bridge_weight + truck_weights[count] <= weight && count < truck_weights.size()) {
+            q.push_back(make_pair(truck_weights[count], 1));
+            bridge_weight += truck_weights[count];
+            count++;
+        }
+        answer++;
     }
     return answer;
 }
