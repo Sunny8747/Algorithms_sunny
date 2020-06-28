@@ -51,11 +51,15 @@ bool programmers_io(string s_input, string expected_result)
     while (ss >> tempStr) {
         vi_input.push_back(stoi(tempStr));
     }
+    cout << "input1 size :" << vi_input.size() << endl;
+
+    ss.clear();
     ss.seekg(0);
     ss.str(expected_result);
     while (ss >> tempStr) {
         ex_result.push_back(stoi(tempStr));
     }
+    cout << "ex_result size :" << ex_result.size() << endl;
 
     //result
     vector<int> result = solution(vi_input);
