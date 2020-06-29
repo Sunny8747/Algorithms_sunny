@@ -10,39 +10,58 @@ using namespace std;
 
 #define N_ELEMENTS(array) (sizeof(array) / sizeof((array)[0]))
 
-vector<int> solution(vector<int> progresses, vector<int> speeds)
+int solution(vector<int> priorities, int location)
 {
-    vector<int> answer;
-    int max_day = 0;
-    int work_count = 0;
-    for (int i = 0; i < progresses.size(); i++) {
-        float temp1 = 100 - progresses[i];
-        float temp2 = speeds[i];
-        int temp_day = (int)ceil(temp1 / temp2);
-        if (max_day == 0) {
-            max_day = temp_day;
-            work_count++;
-        }
-        else {
-            if (max_day < temp_day) {
-                max_day = temp_day;
-                answer.push_back(work_count);
-                work_count = 1;
+    int answer = 0;
+    int SIZE = priorities.size();
+    int* temp_arr = new int[SIZE];
+    for (int i = 0; i < SIZE; i++) {
+        temp_arr[i] = priorities[i];
+    }
+
+    int target_pri = priorities[location];
+    int counter = 0;
+    int start_loc = 0;
+    int temp_max_pri;
+    int temp_max_loc;
+    while (true) {
+        counter++;
+        // 1. exist highest
+        // 2. exist same
+        // 3. target is max
+        temp_max_pri = 0;
+        temp_max_loc = 0;
+        for (int i = 0; i < SIZE; i++) {
+            int temp_i = i + start_loc;
+            if ((temp_i) >= SIZE) {
+                if (temp_arr[temp_i - SIZE] > temp_max_pri) {
+                    temp_max_pri = temp_arr[temp_i - SIZE];
+                    temp_max_loc = temp_i - SIZE;
+                }
             }
             else {
-                work_count++;
+                if (temp_arr[temp_i] > temp_max_pri) {
+                    temp_max_pri = temp_arr[temp_i];
+                    temp_max_loc = temp_i;
+                }
             }
         }
+        if (temp_max_loc == location) {
+            answer = counter;
+            break;
+        }
+        else {
+            temp_arr[temp_max_loc] = 0;
+            start_loc = temp_max_loc;
+        }
     }
-    answer.push_back(work_count);
+    delete[] temp_arr;
     return answer;
 }
 
-bool programmers_io(string s_input1, string s_input2, string expected_result)
+bool programmers_io(string s_input1, int i_input2, int expected_result)
 {
     vector<int> vi_input1;
-    vector<int> vi_input2;
-    vector<int> ex_result;
 
     stringstream ss;
     string tempStr;
@@ -52,35 +71,14 @@ bool programmers_io(string s_input1, string s_input2, string expected_result)
     }
     cout << "input1 size : " << vi_input1.size() << endl;
 
-    ss.clear();
-    ss.seekg(0);
-    ss.str(s_input2);
-    cout << s_input2 << endl;
-    while (ss >> tempStr) {
-        vi_input2.push_back(stoi(tempStr));
-    }
-    cout << "input2 size : " << vi_input2.size() << endl;
-
-    ss.clear();
-    ss.seekg(0);
-    ss >> expected_result;
-    while (ss >> tempStr) {
-        ex_result.push_back(stoi(tempStr));
-    }
-    cout << "ex_result size : " << ex_result.size() << endl;
-
     //result
-    vector<int> result = solution(vi_input1, vi_input2);
-    if (result == ex_result) {
-        cout << "Pass : " << endl;
+    int result = solution(vi_input1, i_input2);
+    if (result == expected_result) {
+        cout << "Pass : " << result << endl;
         return true;
     }
     else {
-        cout << "false result : " << endl;
-        for (int i = 0; i < result.size(); i++) {
-            cout << result[i] << " ";
-        }
-        cout << endl;
+        cout << "false result : " << result << endl;
         return false;
     }
 }
@@ -88,9 +86,10 @@ bool programmers_io(string s_input1, string s_input2, string expected_result)
 int main()
 {
     // making test set
-    string s_input1 = "93 30 55";
-    string s_input2 = "1 30 5";
-    string i_expected_result = "2 1";
+    string s_input1 = "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2";
+    int i_input2 = 97;
+    int i_expected_result = 99;
 
-    bool result = programmers_io(s_input1, s_input2, i_expected_result);
+    bool result = programmers_io(s_input1, i_input2, i_expected_result);
+    return result;
 }
