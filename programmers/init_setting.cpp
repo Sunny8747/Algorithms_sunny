@@ -1,4 +1,5 @@
 // for making test env
+#include <chrono>
 #include <iostream>
 #include <sstream>
 // real input
@@ -11,16 +12,13 @@
 
 using namespace std;
 
-int solution(vector<vector<string>> clothes)
+int solution(vector<string> clothes)
 {
-    int answer = 0;
-    return answer;
 }
 
 bool programmers_io(string input1, int expected_result)
 {
     vector<string> vec_input1;
-    vector<vector<string>> clothes;
     stringstream ss;
     string tempStr;
     ss.str(input1);
@@ -28,10 +26,19 @@ bool programmers_io(string input1, int expected_result)
         vec_input1.push_back(tempStr);
     }
 
-    cout << "vec_input1 size : " << vec_input1.size() << endl;
-
     //result
-    int result = solution(clothes);
+    auto start = chrono::steady_clock::now();
+    int result = solution(vec_input1);
+    int count = 10000;
+    while (count > 0) {
+        count--;
+        solution(vec_input1);
+    }
+    auto end = chrono::steady_clock::now();
+    auto diff = end - start;
+    cout << chrono::duration<double, milli>(diff).count() << " ms" << endl;
+    cout << chrono::duration<double, nano>(diff).count() << " ns" << endl;
+
     if (result == expected_result) {
         cout << "Pass : " << result << endl;
         return true;

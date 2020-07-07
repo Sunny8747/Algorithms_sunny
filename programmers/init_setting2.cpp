@@ -1,4 +1,5 @@
 // for making test env
+#include <chrono>
 #include <iostream>
 #include <sstream>
 // real input
@@ -27,7 +28,19 @@ bool programmers_io(string* input1, int size_input, bool expected_result)
     }
 
     //result
+
+    auto start = chrono::steady_clock::now();
     bool result = solution(vec_input1);
+    int count = 10000;
+    while (count > 0) {
+        count--;
+        solution(vec_input1);
+    }
+    auto end = chrono::steady_clock::now();
+    auto diff = end - start;
+    cout << chrono::duration<double, milli>(diff).count() << " ms" << endl;
+    cout << chrono::duration<double, nano>(diff).count() << " ns" << endl;
+
     if (result == expected_result) {
         cout << "Pass : " << result << endl;
         return true;
