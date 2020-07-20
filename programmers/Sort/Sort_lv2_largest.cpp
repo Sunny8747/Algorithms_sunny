@@ -14,9 +14,39 @@
 
 using namespace std;
 
+bool comp_first(int a, int b)
+{
+    string str_a = to_string(a);
+    string str_b = to_string(b);
+    return stoi(str_a.substr(0, 1)) > stoi(str_b.substr(0, 1));
+}
+
+bool comp_all(int a, int b)
+{
+    if (a == 0) {
+        return false;
+    }
+    string str_a = to_string(a);
+    string str_b = to_string(b);
+    int ab = stoi(str_a + str_b);
+    int ba = stoi(str_b + str_a);
+    return ab > ba;
+}
+
 string solution(vector<int> numbers)
 {
     string answer = "";
+    sort(numbers.begin(), numbers.end(), comp_first);
+    sort(numbers.begin(), numbers.end(), comp_all);
+    for (auto iter = numbers.begin(); iter != numbers.end(); iter++) {
+        answer += to_string((*iter));
+        if (answer != "" && answer.length() == 1) {
+            if (stoi(answer) == 0) {
+                answer = "0";
+                break;
+            }
+        }
+    }
     return answer;
 }
 
@@ -61,7 +91,8 @@ bool programmers_io(string input1, string expected_result)
 int main()
 {
     // making test set
-    string input1 = "6 10 2";
-    string expected_result = "6210";
+    //3 30 34 5 9 4 40 42
+    string input1 = "3 30 34 5 9 4 40 42";
+    string expected_result = "954424034330";
     bool result = programmers_io(input1, expected_result);
 }
